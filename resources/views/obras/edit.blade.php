@@ -44,7 +44,7 @@
                             <div class="input-group-text">Exemplares</div>
                         </div>
                         <input type="number" class="form-control" id="exemplares" min="0" step="1"
-                               value="0">
+                               value="{{$obra->exemplares}}">
                     </div>
                 </div>
                 <div class="form-group col-md-4">
@@ -53,7 +53,7 @@
                             <div class="input-group-text">Preço</div>
                         </div>
                         <input type="number" class="form-control" id="exemplares" min="0" step=".01"
-                               value="00.00">
+                               value="{{$obra->preco}}">
                         <div class="input-group-prepend">
                             <div class="input-group-text">€</div>
                         </div>
@@ -65,14 +65,22 @@
                             <div class="input-group-text">Disponível</div>
                         </div>
                         <select class="form-control" id="disponivel">
-                            <option>Sim</option>
-                            <option>Não</option>
+                            @if($obra->disponivel)
+                                <option>Sim</option>
+                                <option>Não</option>
+                            @else
+                                <option>Não</option>
+                                <option>Sim</option>
+                            @endif
+
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row m-3">
+
                 {{--Especifico de Livro--}}
+                @if($obra instanceof Livro)
                 <div class="form-group col-md-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -82,7 +90,15 @@
                     </div>
                 </div>
 
+                <div class="row m-3">
+                    <div class="form-group col-md-12">
+                        <label for="descricao">Descrição</label>
+                        <textarea rows="6" class="form-control" id="descricao">{{$obra->descr}}</textarea>
+                    </div>
+                </div>
+
                 {{--Especifico de DVD--}}
+                @else
                 <div class="form-group col-md-3">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -95,30 +111,14 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
             </div>
-
-            {{--Especifico de Livro--}}
-
-            <div class="row m-3">
-                <div class="form-group col-md-12">
-                    <label for="descricao">Descrição</label>
-                    <textarea rows="6" class="form-control" id="isbn">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis convallis molestie. Mauris a
-                            felis et diam vestibulum posuere. Quisque ac feugiat elit. Ut fringilla ultrices bibendum. Nullam quis quam mi.
-                            </textarea>
-                </div>
-            </div>
-
-            {{--Especifico de DVD--}}
-
 
             {{-- Botões de controlo--}}
             <div class="row justify-content-center">
                 <div class="col-4 text-center">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> Atualizar</button>
-                    <a href="{{route('obras.index')}}" class="btn btn-danger"><i
-                            class="fa-solid fa-ban"></i> Cancelar</a>
+                    <a href="{{route('obras.index')}}" class="btn btn-warning"><i class="fa-solid fa-ban"></i> Cancelar</a>
                 </div>
             </div>
 

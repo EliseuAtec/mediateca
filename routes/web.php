@@ -25,6 +25,8 @@ abstract class Obra{
     )
     {
     }
+
+
 }
 
 class Livro extends Obra{
@@ -78,7 +80,7 @@ $obras = [
     new DVD(
         3,
         'O Senhor dos Aneis',
-        5,
+        '5',
         22.10,
         true,
         '2023-06-01 12:00:00',
@@ -95,7 +97,6 @@ Route::get('/', function () {
 });
 
 Route::get('/obras', function () use($obras) {
-
     return view('obras.index',['obras'=>$obras]);
 })->name('obras.index');
 

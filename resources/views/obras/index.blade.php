@@ -16,6 +16,7 @@
         <table class="table table-bordered table-striped">
             <thead>
             @foreach($obras as $obra)
+
                 <tr>
                     <th scope="row">{{$obra->id}}</th>
                     <td>{{$obra->nome}}</td>
